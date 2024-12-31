@@ -1,9 +1,24 @@
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+}
+
 .example-form {
   min-width: 150px;
-  max-width: 500px;
+  max-width: 400px;
   width: 100%;
+  
 }
 
 .example-full-width {
   width: 100%;
+}
+
+
+.button-container {
+  display: flex;
+  justify-content: flex-end; 
+  margin-top: 16px;
 }
