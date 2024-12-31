@@ -16,7 +16,7 @@
   </button>
 </mat-toolbar>
 
-<div class="detail-container" *ngIf="user">
+<!-- <div class="detail-container" *ngIf="user">
     <mat-card>
       <mat-card-header>
         <mat-card-title>{{ user.firstName }} {{ user.lastName }}</mat-card-title>
@@ -35,5 +35,57 @@
         </div>
       </mat-card-content>
     </mat-card>
-  </div>
+  </div> -->
   
+<div class="detail-container" *ngIf="user">
+  <div class="form-container">
+    <form class="example-form">
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Name</mat-label>
+        <input
+          matInput
+          [formControl]="nameFormControl"
+          [errorStateMatcher]="matcher"
+          placeholder="Ex. John Doe"
+          pattern="^[A-Za-z]\\w{5,29}$"
+        /> 
+        @if (nameFormControl.hasError('pattern')) {
+          <mat-error>Please enter a valid name</mat-error>
+        }
+        @if (nameFormControl.hasError('required')) {
+          <mat-error>Name is <strong>required</strong></mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Address</mat-label>
+        <input
+          matInput
+          [formControl]="adressFormControl"
+          [errorStateMatcher]="matcher"
+          placeholder="Ex. Number 1,..."
+        /> 
+        @if (adressFormControl.hasError('required')) {
+          <mat-error>Adress is <strong>required</strong></mat-error>
+        }
+      </mat-form-field>
+      
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Phone</mat-label>
+        <input
+          matInput
+          [formControl]="phoneFormControl"
+          [errorStateMatcher]="matcher"
+          placeholder="Ex. 1234..."
+          pattern="^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$"
+        /> 
+        @if (phoneFormControl.hasError('pattern')) {
+          <mat-error>Please enter a valid phone number</mat-error>
+        }
+        @if (phoneFormControl.hasError('required')) {
+          <mat-error>Phone number is <strong>required</strong></mat-error>
+        }
+      </mat-form-field>
+    </form>
+  </div>
+</div>

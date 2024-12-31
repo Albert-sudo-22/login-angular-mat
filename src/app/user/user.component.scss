@@ -37,3 +37,20 @@
     margin-top: 64px; /* Adjust based on the height of the toolbar */
   }
   
+  .form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+  }
+  
+  .example-form {
+    min-width: 150px;
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  

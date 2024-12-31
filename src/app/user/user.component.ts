@@ -7,10 +7,24 @@ import {MatButtonModule} from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
+import { ErrorStateMatcher } from '@angular/material/core';
+import { FormControl, FormGroupDirective, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
 
 @Component({
   selector: 'app-user',
-  imports: [CommonModule, MatButtonModule, MatCardModule, MatToolbarModule, MatIconModule],
+  imports: [CommonModule, MatButtonModule, MatCardModule, MatToolbarModule, MatIconModule,
+    MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule
+  ],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss'
 })
@@ -40,5 +54,11 @@ export class UserComponent {
     this.router.navigate(['/login']);
   }
 
+
+  nameFormControl = new FormControl('', [Validators.required, Validators.pattern("^[A-Za-z]\\w{5,29}$")]);
+  adressFormControl = new FormControl('', [Validators.required]);
+  phoneFormControl = new FormControl('', [Validators.required, 
+    Validators.pattern("^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$")]);
+  matcher = new MyErrorStateMatcher();
 
 }
