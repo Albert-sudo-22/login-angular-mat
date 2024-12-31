@@ -1,16 +1,24 @@
 <div class="detail-container" *ngIf="user">
-    <img src="{{user.image}}" alt="user_Image">
-    <p><strong>First name:</strong> {{user.firstName}}</p>
-    <p><strong>Last name:</strong> {{user.lastName}}</p>
-    <p><strong>Age:</strong> {{ user.age }}</p>
-    <p><strong>Email:</strong> {{ user.email }}</p>
-    <p><strong>Phone:</strong> {{ user.phone }}</p>
-    <p><strong>University:</strong> {{user.university}} </p>
-    <p><strong>Company:</strong> {{ user.company.name }}</p>
-    <p><strong>Address:</strong> {{ user.address.address }}, {{ user.address.city }}</p>
-    <p><strong>Card number:</strong> {{user.bank.cardNumber}}</p>
-    <p><strong>Role:</strong> {{user.role}}</p>
-    <button type="button" class="button" (click)="logOut()">
-        Logout
-    </button>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{ user.firstName }} {{ user.lastName }}</mat-card-title>
+        <mat-card-subtitle>{{ user.role }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="card-content">
+          <img mat-card-image src="{{user.image}}" alt="User Image">
+          <p><strong>Age:</strong> {{ user.age }}</p>
+          <p><strong>Email:</strong> {{ user.email }}</p>
+          <p><strong>Phone:</strong> {{ user.phone }}</p>
+          <p><strong>University:</strong> {{ user.university }}</p>
+          <p><strong>Company:</strong> {{ user.company.name }}</p>
+          <p><strong>Address:</strong> {{ user.address.address }}, {{ user.address.city }}</p>
+          <p><strong>Card number:</strong> {{ user.bank.cardNumber }}</p>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="logOut()">LogOut</button>
+      </mat-card-actions>
+    </mat-card>
   </div>
+  

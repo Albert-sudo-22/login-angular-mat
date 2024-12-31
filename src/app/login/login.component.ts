@@ -33,7 +33,8 @@ export class LoginComponent {
     event.stopPropagation();
   }
 
-  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
+  emailFormControl = new FormControl('', [Validators.required, Validators.email, 
+    Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]);
   passwordFormControl = new FormControl('', [Validators.required]);
 
   matcher = new MyErrorStateMatcher();
