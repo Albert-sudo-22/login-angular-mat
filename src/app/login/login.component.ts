@@ -5,9 +5,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
-import { User } from '../user.model';
-import { UserService } from '../user.service';
+import { User } from '../user/user.model';
+import { UserService } from '../user/user.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -39,7 +40,7 @@ export class LoginComponent {
 
   users: User[] = [];
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit(): void {
     this.fetchUsers();
@@ -68,8 +69,7 @@ export class LoginComponent {
     const user = this.users.find((u) => u.email === email && u.password === password);
   
     if (user) {
-      alert('Login successful! Welcome back!');
-      // Additional logic can be added here, such as navigation or setting a logged-in state
+      this.router.navigate(['/user', user.id]);
     } else {
       alert('Wrong email or password. Please try again.');
     }
