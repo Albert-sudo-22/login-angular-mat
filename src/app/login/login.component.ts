@@ -5,6 +5,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import { User } from '../user.model';
+import { UserService } from '../user.service';
+import { CommonModule } from '@angular/common';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -20,7 +23,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['login.component.scss'],
   standalone: true,
   imports: [MatFormFieldModule, MatInputModule, FormsModule, 
-    ReactiveFormsModule, MatButtonModule, MatIconModule],
+    ReactiveFormsModule, MatButtonModule, MatIconModule, CommonModule],
 })
 export class LoginComponent {
   hide = signal(true);
@@ -33,4 +36,25 @@ export class LoginComponent {
   passwordFormControl = new FormControl('', [Validators.required]);
 
   matcher = new MyErrorStateMatcher();
+
+  users: User[] = []; // Store the fetched user data
+
+  constructor(private userService: UserService) {}
+
+  ngOnInit(): void {
+    this.fetchUsers();
+  }
+
+  fetchUsers(): void {
+    this.userService.fetchUsers().subscribe({
+      next: (data) => {
+        this.users = data.users; // Assuming the API response has a `users` property
+        console.log('Users fetched:', this.users);
+      },
+      error: (err) => {
+        console.error('Error fetching users:', err);
+      },
+    });
+  }
+
 }

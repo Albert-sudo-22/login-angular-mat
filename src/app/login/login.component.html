@@ -46,3 +46,12 @@
     </div>
   </form>
 </div>
+
+
+  <h3>Fetched Users:</h3>
+  <ul>
+    <li *ngFor="let user of users">
+      <p>{{ user.email }}</p>
+      <p>{{user.password}}</p>
+    </li>
+  </ul>
