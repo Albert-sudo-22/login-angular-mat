@@ -10,7 +10,10 @@
   <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
     <mat-icon>share</mat-icon>
   </button>
-  <button mat-raised-button color="primary" (click)="logOut()">LogOut</button>
+  <button mat-icon-button class="example-icon logout-icon" 
+  aria-label="Example icon-button with logout-icon icon" (click)="logOut()">
+    <mat-icon>logout</mat-icon>
+  </button>
 </mat-toolbar>
 
 <div class="detail-container" *ngIf="user">
