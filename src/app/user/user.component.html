@@ -1,3 +1,18 @@
+<mat-toolbar>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>My App</span>
+  <span class="example-spacer"></span>
+  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <mat-icon>favorite</mat-icon>
+  </button>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <mat-icon>share</mat-icon>
+  </button>
+  <button mat-raised-button color="primary" (click)="logOut()">LogOut</button>
+</mat-toolbar>
+
 <div class="detail-container" *ngIf="user">
     <mat-card>
       <mat-card-header>
@@ -16,9 +31,6 @@
           <p><strong>Card number:</strong> {{ user.bank.cardNumber }}</p>
         </div>
       </mat-card-content>
-      <mat-card-actions>
-        <button mat-raised-button color="primary" (click)="logOut()">LogOut</button>
-      </mat-card-actions>
     </mat-card>
   </div>
   

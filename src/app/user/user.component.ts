@@ -5,10 +5,12 @@ import { UserService } from '../user/user.service';
 import { User } from './user.model';
 import {MatButtonModule} from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
 
 @Component({
   selector: 'app-user',
-  imports: [CommonModule, MatButtonModule, MatCardModule],
+  imports: [CommonModule, MatButtonModule, MatCardModule, MatToolbarModule, MatIconModule],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss'
 })

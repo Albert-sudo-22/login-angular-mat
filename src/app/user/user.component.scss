@@ -21,9 +21,19 @@
   .detail-container p {
     margin: 8px 0;
   }
-  
-  mat-card-actions {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 10px;
+
+  .example-spacer {
+    flex: 1 1 auto;
   }
+
+  mat-toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+  body {
+    margin-top: 64px; /* Adjust based on the height of the toolbar */
+  }
+  
