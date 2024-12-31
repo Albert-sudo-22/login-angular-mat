@@ -37,7 +37,7 @@ export class LoginComponent {
 
   matcher = new MyErrorStateMatcher();
 
-  users: User[] = []; // Store the fetched user data
+  users: User[] = [];
 
   constructor(private userService: UserService) {}
 
@@ -48,8 +48,7 @@ export class LoginComponent {
   fetchUsers(): void {
     this.userService.fetchUsers().subscribe({
       next: (data) => {
-        this.users = data.users; // Assuming the API response has a `users` property
-        console.log('Users fetched:', this.users);
+        this.users = data.users; 
       },
       error: (err) => {
         console.error('Error fetching users:', err);
@@ -57,4 +56,23 @@ export class LoginComponent {
     });
   }
 
+  login(): void {
+    const email = this.emailFormControl.value;
+    const password = this.passwordFormControl.value;
+  
+    if (this.emailFormControl.invalid || this.passwordFormControl.invalid) {
+      alert('Please fill in all required fields with valid information.');
+      return;
+    }
+  
+    const user = this.users.find((u) => u.email === email && u.password === password);
+  
+    if (user) {
+      alert('Login successful! Welcome back!');
+      // Additional logic can be added here, such as navigation or setting a logged-in state
+    } else {
+      alert('Wrong email or password. Please try again.');
+    }
+  }
+  
 }
