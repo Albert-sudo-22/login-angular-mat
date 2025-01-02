@@ -41,18 +41,35 @@
     <div class="form-container">
       <form class="example-form" [formGroup]="pForm">
         <mat-form-field class="example-full-width" appearance="outline">
-          <mat-label>Name</mat-label>
+          <mat-label>First Name</mat-label>
           <input
             matInput 
-            formControlName="name"
+            formControlName="firstName"
             [errorStateMatcher]="matcher"
             placeholder="Ex. John Doe"
             pattern="^[a-zA-Z\s]+$"
           />
-          <mat-error *ngIf="pForm.get('name')?.hasError('pattern')">
+          <mat-error *ngIf="pForm.get('firstName')?.hasError('pattern')">
             Please enter a valid name
           </mat-error>
-          <mat-error *ngIf="pForm.get('name')?.hasError('required')">
+          <mat-error *ngIf="pForm.get('firstName')?.hasError('required')">
+            Name is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Last Name</mat-label>
+          <input
+            matInput 
+            formControlName="lastName"
+            [errorStateMatcher]="matcher"
+            placeholder="Ex. John Doe"
+            pattern="^[a-zA-Z\s]+$"
+          />
+          <mat-error *ngIf="pForm.get('lastName')?.hasError('pattern')">
+            Please enter a valid name
+          </mat-error>
+          <mat-error *ngIf="pForm.get('lastName')?.hasError('required')">
             Name is <strong>required</strong>
           </mat-error>
         </mat-form-field>

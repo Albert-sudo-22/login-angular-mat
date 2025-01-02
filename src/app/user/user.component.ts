@@ -35,7 +35,8 @@ export class UserComponent {
   Id?: number;
 
   pForm: FormGroup = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.pattern("^[a-zA-Z\s]+$")]),
+    firstName: new FormControl('', [Validators.required, Validators.pattern("^[a-zA-Z\s]+$")]),
+    lastName: new FormControl('', [Validators.required, Validators.pattern("^[a-zA-Z\s]+$")]),
     phone: new FormControl('', [Validators.required, 
       Validators.pattern("^[+]*[(]?[0-9]{1,4}[)]?[-\s./0-9]*$")
     ]),
@@ -55,7 +56,8 @@ export class UserComponent {
       (data) => {
         this.user = data.users.find((u: User) => u.id == this.Id);
         this.pForm.setValue({
-          name: `${this.user.firstName} ${this.user.lastName}`,
+          firstName: this.user.firstName,
+          lastName: this.user.lastName,
           phone: this.user.phone,
           address: this.user.address.address + ", " + this.user.address.city,
         });
