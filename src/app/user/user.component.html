@@ -81,7 +81,7 @@
             formControlName="email"
             [errorStateMatcher]="matcher"
             placeholder="Ex. abc@def.ghi"
-            pattern="^[a-zA-Z\s]+$"
+            pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
           />
           <mat-error *ngIf="pForm.get('email')?.hasError('pattern')">
             Please enter a valid email
@@ -124,7 +124,7 @@
             formControlName="phone"
             [errorStateMatcher]="matcher"
             placeholder="Ex. 1234..."
-            pattern="^[+]*[(]?[0-9]{1,4}[)]?[-\s./0-9]*$"
+            pattern="^\\+?(\\d{1,4})?[-.\\s]?\\(?\\d+\\)?[-.\\s]?\\d+[-.\\s]?\\d*$"
           />
           <mat-error *ngIf="pForm.get('phone')?.hasError('pattern')">
             Please enter a valid phone number

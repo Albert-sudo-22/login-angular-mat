@@ -38,7 +38,7 @@ export class UserComponent {
     firstName: new FormControl('', [Validators.required, Validators.pattern("^[a-zA-Z\s]+$")]),
     lastName: new FormControl('', [Validators.required, Validators.pattern("^[a-zA-Z\s]+$")]),
     phone: new FormControl('', [Validators.required, 
-      Validators.pattern("^[+]*[(]?[0-9]{1,4}[)]?[-\s./0-9]*$")
+      Validators.pattern("^\\+?(\\d{1,4})?[-.\\s]?\\(?\\d+\\)?[-.\\s]?\\d+[-.\\s]?\\d*$")
     ]),
     address: new FormControl('', [Validators.required]),
     city: new FormControl('', [Validators.required]),
