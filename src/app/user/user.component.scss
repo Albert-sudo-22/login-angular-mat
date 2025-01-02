@@ -26,6 +26,7 @@
     flex: 1 1 auto;
   }
 
+  
   mat-toolbar {
     position: fixed;
     top: 0;
@@ -33,6 +34,7 @@
     width: 100%;
     z-index: 1000;
   }
+  
   body {
     margin-top: 64px; /* Adjust based on the height of the toolbar */
   }
@@ -54,3 +56,6 @@
     width: 100%;
   }
   
+  mat-grid-list {
+    width: 100%; /* Ensure it spans the form's width */
+  }

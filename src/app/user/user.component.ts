@@ -11,6 +11,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { FormControl, FormGroupDirective, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -23,7 +24,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 @Component({
   selector: 'app-user',
   imports: [CommonModule, MatButtonModule, MatCardModule, MatToolbarModule, MatIconModule,
-    MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule
+    MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule, MatGridListModule,
   ],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss'
@@ -55,7 +56,7 @@ export class UserComponent {
   }
 
 
-  nameFormControl = new FormControl('', [Validators.required, Validators.pattern("^[A-Za-z]\\w{5,29}$")]);
+  nameFormControl = new FormControl('', [Validators.required, Validators.pattern("([a-zA-Z0-9_\s]+)")]);
   adressFormControl = new FormControl('', [Validators.required]);
   phoneFormControl = new FormControl('', [Validators.required, 
     Validators.pattern("^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$")]);
