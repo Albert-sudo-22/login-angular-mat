@@ -124,7 +124,7 @@
         <mat-form-field class="example-full-width" appearance="outline">
           <mat-label>Phone</mat-label>
           <input
-            matInput 
+            matInput #input maxlength="10"
             formControlName="phone"
             [errorStateMatcher]="matcher"
             placeholder="Ex. 1234..."
