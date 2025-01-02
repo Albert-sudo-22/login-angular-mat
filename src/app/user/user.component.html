@@ -111,7 +111,11 @@
             formControlName="city"
             [errorStateMatcher]="matcher"
             placeholder="Ex. Corin"
+            pattern="^[a-zA-Z\s]+$"
           />
+          <mat-error *ngIf="pForm.get('city')?.hasError('pattern')">
+            Please enter a valid city
+          </mat-error>
           <mat-error *ngIf="pForm.get('city')?.hasError('required')">
             City is <strong>required</strong>
           </mat-error>

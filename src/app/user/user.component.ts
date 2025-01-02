@@ -41,7 +41,7 @@ export class UserComponent {
       Validators.pattern("^\\+?(\\d{1,4})?[-.\\s]?\\(?\\d+\\)?[-.\\s]?\\d+[-.\\s]?\\d*$")
     ]),
     address: new FormControl('', [Validators.required]),
-    city: new FormControl('', [Validators.required]),
+    city: new FormControl('', [Validators.required, Validators.pattern("^[a-zA-Z\s]+$")]),
     email: new FormControl('', [Validators.required, Validators.email, 
       Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")])
   });
