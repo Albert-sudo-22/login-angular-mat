@@ -16,7 +16,7 @@
   </button>
 </mat-toolbar>
 
-<!-- <div class="detail-container" *ngIf="user">
+<div class="detail-container" *ngIf="user">
     <mat-card>
       <mat-card-header>
         <mat-card-title>{{ user.firstName }} {{ user.lastName }}</mat-card-title>
@@ -35,7 +35,7 @@
         </div>
       </mat-card-content>
     </mat-card>
-  </div> -->
+  </div>
   
 <div class="detail-container" *ngIf="user">
   <div class="form-container">
@@ -43,7 +43,7 @@
       <mat-form-field class="example-full-width" appearance="outline">
         <mat-label>Name</mat-label>
         <input
-          matInput
+          matInput 
           [formControl]="nameFormControl"
           [errorStateMatcher]="matcher"
           placeholder="Ex. John Doe"
@@ -73,7 +73,7 @@
       <mat-form-field class="example-full-width" appearance="outline">
         <mat-label>Phone</mat-label>
         <input
-          matInput #input maxlength="10"
+          matInput #input maxlength="12"
           [formControl]="phoneFormControl"
           [errorStateMatcher]="matcher"
           placeholder="Ex. 1234..."

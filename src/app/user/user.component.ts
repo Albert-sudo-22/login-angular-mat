@@ -34,6 +34,11 @@ export class UserComponent {
   Id?: number;
   constructor(private router: Router, private userService: UserService, private route: ActivatedRoute,) {}
 
+  nameFormControl = new FormControl('', [Validators.required, Validators.pattern("^[a-zA-Z\s]+$")]);
+  adressFormControl = new FormControl('', [Validators.required]);
+  phoneFormControl = new FormControl('', [Validators.required, 
+    Validators.pattern("^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$")]);
+  matcher = new MyErrorStateMatcher();
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -43,6 +48,8 @@ export class UserComponent {
     this.userService.fetchUsers().subscribe(
       (data) => {
         this.user = data.users.find((u: User) => u.id == this.Id);
+        this.nameFormControl.setValue(this.user.firstName + " " + this.user.lastName)
+        this.phoneFormControl.setValue(this.user.phone)
       },
       (error) => {
         console.error('Error fetching users', error);
@@ -54,12 +61,5 @@ export class UserComponent {
   logOut(): void {
     this.router.navigate(['/login']);
   }
-
-
-  nameFormControl = new FormControl('', [Validators.required, Validators.pattern("^[a-zA-Z\s]+$")]);
-  adressFormControl = new FormControl('', [Validators.required]);
-  phoneFormControl = new FormControl('', [Validators.required, 
-    Validators.pattern("^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$")]);
-  matcher = new MyErrorStateMatcher();
 
 }
