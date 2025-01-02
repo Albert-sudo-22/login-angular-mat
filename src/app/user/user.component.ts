@@ -8,7 +8,8 @@ import { MatCardModule } from '@angular/material/card';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import { ErrorStateMatcher } from '@angular/material/core';
-import { FormControl, FormGroupDirective, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormGroupDirective, FormsModule, 
+  NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {MatGridListModule} from '@angular/material/grid-list';
@@ -32,13 +33,18 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class UserComponent {
   user!: User;
   Id?: number;
-  constructor(private router: Router, private userService: UserService, private route: ActivatedRoute,) {}
 
-  nameFormControl = new FormControl('', [Validators.required, Validators.pattern("^[a-zA-Z\s]+$")]);
-  adressFormControl = new FormControl('', [Validators.required]);
-  phoneFormControl = new FormControl('', [Validators.required, 
-    Validators.pattern("^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$")]);
+  pForm: FormGroup = new FormGroup({
+    name: new FormControl('', [Validators.required, Validators.pattern("^[a-zA-Z\s]+$")]),
+    phone: new FormControl('', [Validators.required, 
+      Validators.pattern("^[+]*[(]?[0-9]{1,4}[)]?[-\s./0-9]*$")
+    ]),
+    address: new FormControl('', [Validators.required]),
+  });
+
   matcher = new MyErrorStateMatcher();
+
+  constructor(private router: Router, private userService: UserService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -48,8 +54,11 @@ export class UserComponent {
     this.userService.fetchUsers().subscribe(
       (data) => {
         this.user = data.users.find((u: User) => u.id == this.Id);
-        this.nameFormControl.setValue(this.user.firstName + " " + this.user.lastName)
-        this.phoneFormControl.setValue(this.user.phone)
+        this.pForm.setValue({
+          name: `${this.user.firstName} ${this.user.lastName}`,
+          phone: this.user.phone,
+          address: this.user.address.address + ", " + this.user.address.city,
+        });
       },
       (error) => {
         console.error('Error fetching users', error);
@@ -57,9 +66,8 @@ export class UserComponent {
     );
   }
 
-
   logOut(): void {
     this.router.navigate(['/login']);
   }
-
 }
+

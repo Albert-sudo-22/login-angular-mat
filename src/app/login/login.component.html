@@ -9,7 +9,6 @@
         [formControl]="emailFormControl"
         [errorStateMatcher]="matcher"
         placeholder="Ex. pat@example.com"
-        pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
       />
       @if (emailFormControl.hasError('email') && !emailFormControl.hasError('required') || emailFormControl.hasError('pattern')) {
         <mat-error>Please enter a valid email address</mat-error>
