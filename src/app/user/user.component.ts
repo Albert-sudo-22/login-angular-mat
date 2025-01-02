@@ -56,7 +56,7 @@ export class UserComponent {
   }
 
 
-  nameFormControl = new FormControl('', [Validators.required, Validators.pattern("([a-zA-Z0-9_\s]+)")]);
+  nameFormControl = new FormControl('', [Validators.required, Validators.pattern("^[a-zA-Z\s]+$")]);
   adressFormControl = new FormControl('', [Validators.required]);
   phoneFormControl = new FormControl('', [Validators.required, 
     Validators.pattern("^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$")]);
