@@ -41,6 +41,9 @@ export class UserComponent {
       Validators.pattern("^[+]*[(]?[0-9]{1,4}[)]?[-\s./0-9]*$")
     ]),
     address: new FormControl('', [Validators.required]),
+    city: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email, 
+      Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")])
   });
 
   matcher = new MyErrorStateMatcher();
@@ -59,7 +62,9 @@ export class UserComponent {
           firstName: this.user.firstName,
           lastName: this.user.lastName,
           phone: this.user.phone,
-          address: this.user.address.address + ", " + this.user.address.city,
+          address: this.user.address.address,
+          city: this.user.address.city,
+          email: this.user.email
         });
       },
       (error) => {

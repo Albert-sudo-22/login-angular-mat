@@ -46,14 +46,14 @@
             matInput 
             formControlName="firstName"
             [errorStateMatcher]="matcher"
-            placeholder="Ex. John Doe"
+            placeholder="Ex. John"
             pattern="^[a-zA-Z\s]+$"
           />
           <mat-error *ngIf="pForm.get('firstName')?.hasError('pattern')">
             Please enter a valid name
           </mat-error>
           <mat-error *ngIf="pForm.get('firstName')?.hasError('required')">
-            Name is <strong>required</strong>
+            First name is <strong>required</strong>
           </mat-error>
         </mat-form-field>
 
@@ -63,14 +63,31 @@
             matInput 
             formControlName="lastName"
             [errorStateMatcher]="matcher"
-            placeholder="Ex. John Doe"
+            placeholder="Ex. Doe"
             pattern="^[a-zA-Z\s]+$"
           />
           <mat-error *ngIf="pForm.get('lastName')?.hasError('pattern')">
             Please enter a valid name
           </mat-error>
           <mat-error *ngIf="pForm.get('lastName')?.hasError('required')">
-            Name is <strong>required</strong>
+            Last name is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Email</mat-label>
+          <input
+            matInput 
+            formControlName="email"
+            [errorStateMatcher]="matcher"
+            placeholder="Ex. abc@def.ghi"
+            pattern="^[a-zA-Z\s]+$"
+          />
+          <mat-error *ngIf="pForm.get('email')?.hasError('pattern')">
+            Please enter a valid email
+          </mat-error>
+          <mat-error *ngIf="pForm.get('email')?.hasError('required')">
+            Email is <strong>required</strong>
           </mat-error>
         </mat-form-field>
   
@@ -84,6 +101,19 @@
           />
           <mat-error *ngIf="pForm.get('address')?.hasError('required')">
             Address is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>City</mat-label>
+          <input
+            matInput
+            formControlName="city"
+            [errorStateMatcher]="matcher"
+            placeholder="Ex. Corin"
+          />
+          <mat-error *ngIf="pForm.get('city')?.hasError('required')">
+            City is <strong>required</strong>
           </mat-error>
         </mat-form-field>
         
